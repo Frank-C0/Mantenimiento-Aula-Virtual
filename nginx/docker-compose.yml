@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./certs/cert.pem:/etc/ssl/certs/cert.pem:ro  # Monta tus certificados
+      - ./certs/key.pem:/etc/ssl/certs/key.pem:ro  # Monta tus certificados
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - mantenimiento-aula-virtual_odoo-network
+
+networks:
+  mantenimiento-aula-virtual_odoo-network:
+    external: true
